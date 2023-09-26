@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URI=mssql+pyodbc://sa:myPassw0rd@db:1433/productdb?driver=ODBC+Driver+17+for+SQL+Server
+
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: myPassw0rd
+    ports:
+      - "1433:1433"

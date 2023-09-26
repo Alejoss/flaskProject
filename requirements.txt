@@ -1,0 +1,5 @@
+Flask==2.3.3
+Flask-SQLAlchemy==2.5.1
+pyodbc==4.0.39
+SQLAlchemy==1.4.15
+jsonify==0.5
